@@ -2,8 +2,8 @@
 Contributors: tierrainnovation, ravanh
 Tags: kses,tiny mce, 
 Requires at least: 2.7
-Tested up to: 3.6
-Stable tag: trunk
+Tested up to: 4.4
+Stable tag: 3.4
 
 This plugin extends the HTML functionality of the kses.php file inside wp-includes by allowing additional html tags.
 
@@ -16,6 +16,10 @@ This plugin extends the HTML functionalify of the Wordpress kses.php file, which
 Keep in mind, that by checking a tag, you are making it acceptable to post said HTML and save it.  If your users also post content, it is important that you make sure you are not enabling any malicious HTML from wreaking havoc to your environment.  If there is a tag that is missing or that you would like us to add and support, feel free to leave a comment in our **[support](http://tierra-innovation.com/wordpress-cms/plugins/extend-kses/#respond)** area for this plugin.
 
 == Changelog ==
+
+= 3.5 =
+
+Added microdata support
 
 = 2.3 = 
 

@@ -3,7 +3,7 @@
  * Plugin Name: Extend KSES +
  * Plugin URI: http://status301.net
  * Description: Extends kses.php by allowing additional html tags
- * Version: 3.4
+ * Version: 3.5-alpha
  * Author: Ravanh, Tierra Innovation
  * Author URI: http://status301.net
  */
@@ -23,6 +23,7 @@
 
 // For more info see wp-includes/kses.php
 
+// TODO: remove options page and move options to Settings > Writing
 // set admin screen
 function modify_extend_kses_plus_menu() {
 	add_submenu_page(
