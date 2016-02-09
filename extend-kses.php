@@ -56,7 +56,7 @@ function update_extend_kses_plus_options() {
 	if (isset($_REQUEST['allow_kses']))
 		update_option('allow_kses',$_REQUEST['allow_kses']);
 	else
-		update_option('allow_kses',array());
+		update_option('allow_kses',[]);
 
 	echo '
 		<div id="message" class="updated fade">
@@ -88,7 +88,7 @@ function print_extend_kses_plus_form() {
 	$allow_kses_pre_selected = isset( $allow_kses['pre'] ) ? 'checked' : '';
 	$allow_kses_script_selected = isset( $allow_kses['script'] ) ? 'checked' : '';
 
-    if (defined(WP_DEBUG && true == WP_DEBUG)) {
+    if ( defined(WP_DEBUG) && true == WP_DEBUG ) {
         $allowed_tags = wp_kses_allowed_html( 'post' );
         var_dump( $allowed_tags );
     }
@@ -143,29 +143,29 @@ function do_extend_kses_plus_magic() {
 	if ( isset($allow_kses['div']) ) {
 
 		$allowedposttags['div'] = array(
-			'align' => array (),
-			'class' => array (),
-			'dir' => array (),
-			'id' => array (),
-			'lang' => array(),
-			'style' => array (),
-			'xml:lang' => array(),
-			'itemscope' => array(),
-			'itemtype' => array(),
-			'itemprop' => array()
+			'align' => [],
+			'class' => [],
+			'dir' => [],
+			'id' => [],
+			'lang' => [],
+			'style' => [],
+			'xml:lang' => [],
+			'itemscope' => [],
+			'itemtype' => [],
+			'itemprop' => []
 		);
 
 		$allowedtags['div'] = array(
-			'align' => array (),
-			'class' => array (),
-			'dir' => array (),
-			'id' => array (),
-			'lang' => array(),
-			'style' => array (),
-			'xml:lang' => array(),
-			'itemscope' => array(),
-			'itemtype' => array(),
-			'itemprop' => array()
+			'align' => [],
+			'class' => [],
+			'dir' => [],
+			'id' => [],
+			'lang' => [],
+			'style' => [],
+			'xml:lang' => [],
+			'itemscope' => [],
+			'itemtype' => [],
+			'itemprop' => []
 		);
 
 	}
@@ -173,65 +173,65 @@ function do_extend_kses_plus_magic() {
 	if ( isset($allow_kses['embed']) ) {
 
 		$allowedposttags['embed'] = array(
-			'style' => array(),
-			'type' => array (),
-			'id' => array (),
-			'height' => array (),
-			'width' => array (),
-			'src' => array (),
-			'itemprop' => array()
+			'style' => [],
+			'type' => [],
+			'id' => [],
+			'height' => [],
+			'width' => [],
+			'src' => [],
+			'itemprop' => []
 		);
 
 		$allowedtags['embed'] = array(
-			'style' => array(),
-			'type' => array (),
-			'id' => array (),
-			'height' => array (),
-			'width' => array (),
-			'src' => array (),
-			'itemprop' => array()
+			'style' => [],
+			'type' => [],
+			'id' => [],
+			'height' => [],
+			'width' => [],
+			'src' => [],
+			'itemprop' => []
 		);
 
 	}
 
 	if ( isset($allow_kses['iframe']) ) {
 
-		$allowedposttags['iframe'] = array (
-			'width' => array (),
-			'height' => array (),
-			'frameborder' => array (),
-			'scrolling' => array (),
-			'marginheight' => array (),
-			'marginwidth' => array (),
-			'class' => array (),
-			'id' => array (),
-			'title' => array (),
-			'style' => array (),
-			'align' => array (),
-			'longdesc' => array (),
-			'src' => array (),
-			'itemscope' => array(),
-			'itemtype' => array(),
-			'itemprop' => array()
+		$allowedposttags['iframe'] = array(
+			'width' => [],
+			'height' => [],
+			'frameborder' => [],
+			'scrolling' => [],
+			'marginheight' => [],
+			'marginwidth' => [],
+			'class' => [],
+			'id' => [],
+			'title' => [],
+			'style' => [],
+			'align' => [],
+			'longdesc' => [],
+			'src' => [],
+			'itemscope' => [],
+			'itemtype' => [],
+			'itemprop' => []
 		);
 
-		$allowedtags['iframe'] = array (
-			'width' => array (),
-			'height' => array (),
-			'frameborder' => array (),
-			'scrolling' => array (),
-			'marginheight' => array (),
-			'marginwidth' => array (),
-			'class' => array (),
-			'id' => array (),
-			'title' => array (),
-			'style' => array (),
-			'align' => array (),
-			'longdesc' => array (),
-			'src' => array (),
-			'itemscope' => array(),
-			'itemtype' => array(),
-			'itemprop' => array()
+		$allowedtags['iframe'] = array(
+			'width' => [],
+			'height' => [],
+			'frameborder' => [],
+			'scrolling' => [],
+			'marginheight' => [],
+			'marginwidth' => [],
+			'class' => [],
+			'id' => [],
+			'title' => [],
+			'style' => [],
+			'align' => [],
+			'longdesc' => [],
+			'src' => [],
+			'itemscope' => [],
+			'itemtype' => [],
+			'itemprop' => []
 		);
 
 		add_filter('tiny_mce_before_init', create_function( '$a','$a["extended_valid_elements"] = "iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width|itemscope|itemtype|itemprop]"; return $a;') );
@@ -240,78 +240,78 @@ function do_extend_kses_plus_magic() {
 
 	if ( isset($allow_kses['img']) ) {
 
-		$allowedposttags['img'] = array (
-			'alt' => array (),
-			'align' => array (),
-			'border' => array (),
-			'class' => array (),
-			'height' => array (),
-			'hspace' => array (),
-			'longdesc' => array (),
-			'vspace' => array (),
-			'src' => array (),
-			'style' => array (),
-			'width' => array (),
-			'title' => array (),
-			'usemap' => array (),
-			'itemprop' => array()
+		$allowedposttags['img'] = array(
+			'alt' => [],
+			'align' => [],
+			'border' => [],
+			'class' => [],
+			'height' => [],
+			'hspace' => [],
+			'longdesc' => [],
+			'vspace' => [],
+			'src' => [],
+			'style' => [],
+			'width' => [],
+			'title' => [],
+			'usemap' => [],
+			'itemprop' => []
 		);
 
-		$allowedtags['img'] = array (
-			'alt' => array (),
-			'align' => array (),
-			'border' => array (),
-			'class' => array (),
-			'height' => array (),
-			'hspace' => array (),
-			'longdesc' => array (),
-			'vspace' => array (),
-			'src' => array (),
-			'style' => array (),
-			'width' => array (),
-			'title' => array (),
-			'usemap' => array (),
-			'itemprop' => array()
+		$allowedtags['img'] = array(
+			'alt' => [],
+			'align' => [],
+			'border' => [],
+			'class' => [],
+			'height' => [],
+			'hspace' => [],
+			'longdesc' => [],
+			'vspace' => [],
+			'src' => [],
+			'style' => [],
+			'width' => [],
+			'title' => [],
+			'usemap' => [],
+			'itemprop' => []
 		);
 
 	}
 
 	if ( isset($allow_kses['map']) ) {
 
-		$allowedposttags['map'] = array (
-			'name' => array (),
-			'area' => array (
-				'attributes' => array (),
-				'shape' => array (),
-				'coords' => array (),
-				'href' => array (),
-				'target' => array (),
-				'alt' => array (),
-				'title' => array (),
-				'id' => array ()
+		$allowedposttags['map'] = array(
+			'name' => [],
+			'area' => array(
+				'attributes' => [],
+				'shape' => [],
+				'coords' => [],
+				'href' => [],
+				'target' => [],
+				'alt' => [],
+				'title' => [],
+				'id' => []
 			),
-			'id' => array (),
-			'itemscope' => array(),
-			'itemtype' => array(),
-			'itemprop' => array()
+			'id' => [],
+			'itemscope' => [],
+			'itemtype' => [],
+			'itemprop' => []
 		);
 
-		$allowedtags['map'] = array (
-			'name' => array (),
-			'area' => array (
-				'attributes' => array (),
-				'shape' => array (),
-				'coords' => array (),
-				'href' => array (),
-				'target' => array (),
-				'alt' => array (),
-				'title' => array (),
-				'id' => array ()
+		$allowedtags['map'] = array(
+			'name' => [],
+			'area' => array(
+				'attributes' => [],
+				'shape' => [],
+				'coords' => [],
+				'href' => [],
+				'target' => [],
+				'alt' => [],
+				'title' => [],
+				'id' => []
 			),
-			'id' => array (),
-			'itemscope' => array(),
-			'itemtype' => array(),
-			'itemprop' => array()
+			'id' => [],
+			'itemscope' => [],
+			'itemtype' => [],
+			'itemprop' => []
 		);
 
 	}
@@ -319,90 +319,90 @@ function do_extend_kses_plus_magic() {
 	if ( isset($allow_kses['object']) ) {
 
 		$allowedposttags['object'] = array(
-			'style' => array(),
-			'height' => array(),
-			'width' => array(),
-			'name' => array(),
-			'type' => array(),
-            'form' => array(),
-            'data' => array(),
-			'id' => array(),
-			'height' => array(),
-			'width' => array(),
-			'usemap' => array(),
-			'itemprop' => array()
+			'style' => [],
+			'height' => [],
+			'width' => [],
+			'name' => [],
+			'type' => [],
+            'form' => [],
+            'data' => [],
+			'id' => [],
+			'height' => [],
+			'width' => [],
+			'usemap' => [],
+			'itemprop' => []
 		);
 
 		$allowedtags['object'] = array(
-			'style' => array(),
-			'height' => array(),
-			'width' => array(),
-			'name' => array(),
-			'type' => array(),
-            'form' => array(),
-            'data' => array(),
-			'id' => array(),
-			'height' => array(),
-			'width' => array(),
-			'usemap' => array(),
-			'itemprop' => array()
+			'style' => [],
+			'height' => [],
+			'width' => [],
+			'name' => [],
+			'type' => [],
+            'form' => [],
+            'data' => [],
+			'id' => [],
+			'height' => [],
+			'width' => [],
+			'usemap' => [],
+			'itemprop' => []
 		);
 
-		$allowedposttags['param'] = array (
-			'name' => array (),
-			'value' => array ()
+		$allowedposttags['param'] = array(
+			'name' => [],
+			'value' => []
 		);
 
-		$allowedtags['param'] = array (
-			'name' => array (),
-			'value' => array ()
+		$allowedtags['param'] = array(
+			'name' => [],
+			'value' => []
 		);
 
 	}
 
 	if ( isset($allow_kses['pre']) ) {
 
-		$allowedposttags['pre'] = array (
-			'style' => array (),
-			'name' => array (),
-			'class' => array (),
-			'lang' => array (),
-			'width' => array (),
-			'itemprop' => array()
+		$allowedposttags['pre'] = array(
+			'style' => [],
+			'name' => [],
+			'class' => [],
+			'lang' => [],
+			'width' => [],
+			'itemprop' => []
 		);
 
-		$allowedtags['pre'] = array (
-			'style' => array (),
-			'name' => array (),
-			'class' => array (),
-			'lang' => array (),
-			'width' => array (),
-			'itemprop' => array()
+		$allowedtags['pre'] = array(
+			'style' => [],
+			'name' => [],
+			'class' => [],
+			'lang' => [],
+			'width' => [],
+			'itemprop' => []
 		);
 
 	}
 
 	if ( isset($allow_kses['script']) ) {
 
-		$allowedposttags['script'] = array (
-			'type' => array (),
-			'async' => array (),
-			'charset' => array (),
-			'defer' => array (),
-			'src' => array ()
+		$allowedposttags['script'] = array(
+			'type' => [],
+			'async' => [],
+			'charset' => [],
+			'defer' => [],
+			'src' => []
 		);
 
-		$allowedtags['script'] = array (
-			'type' => array (),
-			'async' => array (),
-			'charset' => array (),
-			'defer' => array (),
-			'src' => array ()
+		$allowedtags['script'] = array(
+			'type' => [],
+			'async' => [],
+			'charset' => [],
+			'defer' => [],
+			'src' => []
 		);
 
-		$allowedposttags['noscript'] = array ();
+		$allowedposttags['noscript'] = [];
 
-		$allowedtags['noscript'] = array ();
+		$allowedtags['noscript'] = [];
 
 		add_filter( 'content_save_pre', 'extend_kses_plus_filter_cdata', 9, 1 );
 
