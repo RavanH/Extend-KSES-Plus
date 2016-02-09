@@ -21,6 +21,10 @@ Keep in mind, that by checking a tag, you are making it acceptable to post said 
 
 Added microdata support
 
+= 3.4 =
+
+
+
 = 2.3 = 
 
 Added additional image map support
@@ -32,21 +36,18 @@ Added additional image map support
 1. Check the boxes next to the HTML tag you wish to enable and click `save options`
 1. Paste HTML code into the HTML version - NOT the visual version - of the post/page editor and save.
 
-== Screenshots ==
-
-**[View Screen Shots](http://tierra-innovation.com/wordpress-cms/plugins/extend-kses/)**
-
 == Frequently Asked Questions ==
 
 = What tags are currently supported? =
 
-1. `div` tag extended to allow for `id` child tag.
-1. `embed` tag is now fully supported, including the following children tags: `style`, `type`, `id`, `height`, `width`, `src` and the entire `object` tag (including children).
-1. `iframe` tag is now fully supported, including the following children tags: 	`width`, `height`, `frameborder`, `scrolling`, `marginheight`, `marginwidth` and `src`.
-1. `img` tag extended to allow for `usemap` child tag.
-1. `map` tag is now fully supported, including the following children tags: `name` and `id`
-1. `object` tag is now fully supported, including the following children tags: `style`, `height`, `width`, the entire `param` tag (including children) and the entire `embed` tag (including children).
-1. `param` tag is now fully supported, including the following children tags: `name` and `value`
-1. `pre` tag now fully supports Google Syntax Highlighter, including the following children tags: `style`, 'name', 'class', 'lang' and 'width'
+1. `div` tag extended to allow for the attributes `id`, `itemscope`, `itemtype` and `itemprop`.
+1. `embed` tag is now fully supported, including the attributes `style`, `type`, `id`, `height`, `width`, `src` and `itemprop`.
+1. `iframe` tag is now fully supported, including the attributes `width`, `height`, `frameborder`, `scrolling`, `marginheight`, `marginwidth`, `src`, `itemscope`, `itemtype` and `itemprop`.
+1. `img` tag extended to allow for `usemap` and `itemprop` attributes.
+1. `map` tag is now fully supported, including the attributes `name`, `id`, `itemscope`, `itemtype` and `itemprop`. 
+1. `object` tag is now fully supported, including the attributes `style`, `height`, `width` and `itemprop` plus the `param` tag including including the attributes `name` and `value`.
+1. `pre` tag now fully supports Google Syntax Highlighter, including the attributes `style`, 'name', 'class', 'lang', 'width'  and `itemprop`.
+1. `script` tag now supported, including the attributes `type`, `async`, `charset`, `defer` and `src` plus the `noscript` tag.
+
 
 Need more help?  **[Support](http://tierra-innovation.com/wordpress-cms/plugins/extend-kses/#respond)**

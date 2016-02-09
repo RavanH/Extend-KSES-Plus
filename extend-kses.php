@@ -75,7 +75,6 @@ function print_extend_kses_plus_form() {
 		'img' => 'yes',
 		'map' => 'yes',
 		'object' => 'yes',
-		'param' => 'yes',
 		'pre' => 'yes'
 	);
 	$allow_kses = get_option('allow_kses', $default);
@@ -86,11 +85,15 @@ function print_extend_kses_plus_form() {
 	$allow_kses_img_selected = isset( $allow_kses['img'] ) ? 'checked' : '';
 	$allow_kses_map_selected = isset( $allow_kses['map'] ) ? 'checked' : '';
 	$allow_kses_object_selected = isset( $allow_kses['object'] ) ? 'checked' : '';
-	$allow_kses_param_selected = isset( $allow_kses['param'] ) ? 'checked' : '';
 	$allow_kses_pre_selected = isset( $allow_kses['pre'] ) ? 'checked' : '';
 	$allow_kses_script_selected = isset( $allow_kses['script'] ) ? 'checked' : '';
 
-	// execute the form
+    if (defined(WP_DEBUG && true == WP_DEBUG)) {
+        $allowed_tags = wp_kses_allowed_html( 'post' );
+        var_dump( $allowed_tags );
+    }
+
+    // execute the form
 	print "
 
 	<div class='wrap'>
@@ -107,8 +110,7 @@ function print_extend_kses_plus_form() {
 					<li><label><input type='checkbox' name='allow_kses[iframe]' value='yes' $allow_kses_iframe_selected /> <strong>iframe</strong></label> (full support)</li>
 					<li><label><input type='checkbox' name='allow_kses[img]' value='yes' $allow_kses_img_selected /> <strong>img</strong></label> (additional support for image maps)</li>
 					<li><label><input type='checkbox' name='allow_kses[map]' value='yes' $allow_kses_map_selected /> <strong>map</strong></label> (full support)</li>
-					<li><label><input type='checkbox' name='allow_kses[object]' value='yes' $allow_kses_object_selected /> <strong>object</strong></label> (full support)</li>
-					<li><label><input type='checkbox' name='allow_kses[param]' value='yes' $allow_kses_param_selected /> <strong>param</strong></label> (full support)</li>
+					<li><label><input type='checkbox' name='allow_kses[object]' value='yes' $allow_kses_object_selected /> <strong>object</strong></label> (full support incl. param tag)</li>
 					<li><label><input type='checkbox' name='allow_kses[pre]' value='yes' $allow_kses_pre_selected /> <strong>pre</strong></label> (additional support for google syntax highlighter)</li>
 					<li><label><input type='checkbox' name='allow_kses[script]' value='yes' $allow_kses_script_selected /> <strong>script</strong></label> (notes: 1. disable rich text editor to prevent it from cripling script code; 2. complex script code may still be cripled by other filters; 3. be careful, allowing unverified script is a security risk!)</li>
 				</ul>
@@ -132,7 +134,6 @@ function do_extend_kses_plus_magic() {
 		'img' => 'yes',
 		'map' => 'yes',
 		'object' => 'yes',
-		'param' => 'yes',
 		'pre' => 'yes'
 	);
 
@@ -148,7 +149,10 @@ function do_extend_kses_plus_magic() {
 			'id' => array (),
 			'lang' => array(),
 			'style' => array (),
-			'xml:lang' => array()
+			'xml:lang' => array(),
+			'itemscope' => array(),
+			'itemtype' => array(),
+			'itemprop' => array()
 		);
 
 		$allowedtags['div'] = array(
@@ -158,7 +162,10 @@ function do_extend_kses_plus_magic() {
 			'id' => array (),
 			'lang' => array(),
 			'style' => array (),
-			'xml:lang' => array()
+			'xml:lang' => array(),
+			'itemscope' => array(),
+			'itemtype' => array(),
+			'itemprop' => array()
 		);
 
 	}
@@ -172,14 +179,7 @@ function do_extend_kses_plus_magic() {
 			'height' => array (),
 			'width' => array (),
 			'src' => array (),
-			'object' => array(
-				'height' => array (),
-				'width' => array (),
-				'param' => array (
-					'name' => array (),
-					'value' => array ()
-				)
-			)
+			'itemprop' => array()
 		);
 
 		$allowedtags['embed'] = array(
@@ -189,14 +189,7 @@ function do_extend_kses_plus_magic() {
 			'height' => array (),
 			'width' => array (),
 			'src' => array (),
-			'object' => array(
-				'height' => array (),
-				'width' => array (),
-				'param' => array (
-					'name' => array (),
-					'value' => array ()
-				)
-			)
+			'itemprop' => array()
 		);
 
 	}
@@ -204,9 +197,9 @@ function do_extend_kses_plus_magic() {
 	if ( isset($allow_kses['iframe']) ) {
 
 		$allowedposttags['iframe'] = array (
-					'width' => array (),
-					'height' => array (),
-					'frameborder' => array (),
+			'width' => array (),
+			'height' => array (),
+			'frameborder' => array (),
 			'scrolling' => array (),
 			'marginheight' => array (),
 			'marginwidth' => array (),
@@ -216,13 +209,16 @@ function do_extend_kses_plus_magic() {
 			'style' => array (),
 			'align' => array (),
 			'longdesc' => array (),
-			'src' => array ()
+			'src' => array (),
+			'itemscope' => array(),
+			'itemtype' => array(),
+			'itemprop' => array()
 		);
 
 		$allowedtags['iframe'] = array (
-					'width' => array (),
-					'height' => array (),
-					'frameborder' => array (),
+			'width' => array (),
+			'height' => array (),
+			'frameborder' => array (),
 			'scrolling' => array (),
 			'marginheight' => array (),
 			'marginwidth' => array (),
@@ -232,10 +228,13 @@ function do_extend_kses_plus_magic() {
 			'style' => array (),
 			'align' => array (),
 			'longdesc' => array (),
-			'src' => array ()
+			'src' => array (),
+			'itemscope' => array(),
+			'itemtype' => array(),
+			'itemprop' => array()
 		);
 
-		add_filter('tiny_mce_before_init', create_function( '$a','$a["extended_valid_elements"] = "iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width]"; return $a;') );
+		add_filter('tiny_mce_before_init', create_function( '$a','$a["extended_valid_elements"] = "iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width|itemscope|itemtype|itemprop]"; return $a;') );
 
 	}
 
@@ -254,7 +253,8 @@ function do_extend_kses_plus_magic() {
 			'style' => array (),
 			'width' => array (),
 			'title' => array (),
-			'usemap' => array ()
+			'usemap' => array (),
+			'itemprop' => array()
 		);
 
 		$allowedtags['img'] = array (
@@ -270,7 +270,8 @@ function do_extend_kses_plus_magic() {
 			'style' => array (),
 			'width' => array (),
 			'title' => array (),
-			'usemap' => array ()
+			'usemap' => array (),
+			'itemprop' => array()
 		);
 
 	}
@@ -289,7 +290,10 @@ function do_extend_kses_plus_magic() {
 				'title' => array (),
 				'id' => array ()
 			),
-			'id' => array ()
+			'id' => array (),
+			'itemscope' => array(),
+			'itemtype' => array(),
+			'itemprop' => array()
 		);
 
 		$allowedtags['map'] = array (
@@ -304,7 +308,10 @@ function do_extend_kses_plus_magic() {
 				'title' => array (),
 				'id' => array ()
 			),
-			'id' => array ()
+			'id' => array (),
+			'itemscope' => array(),
+			'itemtype' => array(),
+			'itemprop' => array()
 		);
 
 	}
@@ -312,48 +319,34 @@ function do_extend_kses_plus_magic() {
 	if ( isset($allow_kses['object']) ) {
 
 		$allowedposttags['object'] = array(
-				'style' => array (),
-			'height' => array (),
-			'width' => array (),
-			'param' => array (
-				'name' => array (),
-				'value' => array ()
-			),
-			'embed' => array(
-				'style' => array(),
-				'type' => array (),
-				'id' => array (),
-				'height' => array (),
-				'width' => array (),
-				'src' => array (),
-				'allowfullscreen' => array (),
-				'allowscriptaccess' => array ()
-			)
+			'style' => array(),
+			'height' => array(),
+			'width' => array(),
+			'name' => array(),
+			'type' => array(),
+            'form' => array(),
+            'data' => array(),
+			'id' => array(),
+			'height' => array(),
+			'width' => array(),
+			'usemap' => array(),
+			'itemprop' => array()
 		);
 
 		$allowedtags['object'] = array(
-				'style' => array (),
-			'height' => array (),
-			'width' => array (),
-			'param' => array (
-				'name' => array (),
-				'value' => array ()
-			),
-			'embed' => array(
-				'style' => array(),
-				'type' => array (),
-				'id' => array (),
-				'height' => array (),
-				'width' => array (),
-				'src' => array (),
-				'allowfullscreen' => array (),
-				'allowscriptaccess' => array ()
-			)
+			'style' => array(),
+			'height' => array(),
+			'width' => array(),
+			'name' => array(),
+			'type' => array(),
+            'form' => array(),
+            'data' => array(),
+			'id' => array(),
+			'height' => array(),
+			'width' => array(),
+			'usemap' => array(),
+			'itemprop' => array()
 		);
-
-	}
-
-	if ( isset($allow_kses['param']) ) {
 
 		$allowedposttags['param'] = array (
 			'name' => array (),
@@ -374,7 +367,8 @@ function do_extend_kses_plus_magic() {
 			'name' => array (),
 			'class' => array (),
 			'lang' => array (),
-			'width' => array ()
+			'width' => array (),
+			'itemprop' => array()
 		);
 
 		$allowedtags['pre'] = array (
@@ -382,7 +376,8 @@ function do_extend_kses_plus_magic() {
 			'name' => array (),
 			'class' => array (),
 			'lang' => array (),
-			'width' => array ()
+			'width' => array (),
+			'itemprop' => array()
 		);
 
 	}
@@ -419,7 +414,6 @@ function do_extend_kses_plus_magic() {
 add_action('init','do_extend_kses_plus_magic');
 
 function extend_kses_plus_filter_cdata( $content ) {
-	$content = str_replace( '// <![CDATA[', '', $content );
-	$content = str_replace( '// ]]>', '', $content );
-	return $content;
+	$filtered = str_replace( '// <![CDATA[', '', $content );
+	return str_replace( '// ]]>', '', $filtered );
 }
