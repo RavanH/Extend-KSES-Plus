@@ -57,9 +57,9 @@ function extend_kses_plus_post_settings() {
         $allow_kses_iframe_label = __('Allow <code>iframe</code> tag','extend-kses');
         $allow_kses_object_label = __('Allow <code>object</code> and <code>param</code> tags','extend-kses');
         $allow_kses_script_label = __('Allow <code>script</code> tag *','extend-kses');
+        $allow_kses_notes = __('*) Warning: Be careful, allowing unverified script is a security risk! Also note that the rich text editor and other filters may still remove javascript; disable the rich text editor or use the <code>scr</code> attribute to link to an external source.','extend-kses');
         $allow_kses_microdata_label = __('Allow <a href="https://en.wikipedia.org/wiki/Microdata_(HTML)" target="_blank">Microdata</a> attributes <code>itemscope</code>, <code>itemtype</code>, <code>itemid</code>, <code>itemref</code> and <code>itemprop</code> on all elements','extend-kses');
         $allow_kses_tinymce_label = __('Prevent the <strong>Rich Text Editor</strong> stripping allowed tags and attributes','extend-kses');
-        $allow_kses_notes = __('*) Warning: Be careful, allowing unverified script is a security risk! Also note that the rich text editor and other filters may still remove javascript; disable the rich text editor or use the <code>scr</code> attribute to link to an external source.','extend-kses');
 
         print "
                 <fieldset>
