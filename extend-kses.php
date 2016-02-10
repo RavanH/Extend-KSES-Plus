@@ -3,7 +3,7 @@
  * Plugin Name: Extend KSES +
  * Plugin URI: http://status301.net
  * Description: Extends kses.php by allowing additional html tags
- * Version: 3.5-beta
+ * Version: 3.5
  * Text Domain: extend-kses
  * Author: RavanH, Tierra Innovation
  * Author URI: http://status301.net

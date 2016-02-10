@@ -3,7 +3,7 @@ Contributors: tierrainnovation, ravanh
 Tags: kses, tiny mce, rte, allowed html
 Requires at least: 2.7
 Tested up to: 4.4
-Stable tag: 3.4
+Stable tag: 3.5
 
 This plugin extends the HTML functionality of the kses.php file inside wp-includes by allowing additional html tags.
 
